@@ -1,3 +1,10 @@
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.spec.SecretKeySpec;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Random;
 
 public class UserA {
@@ -7,7 +14,6 @@ public class UserA {
     private int Ya;
     private int Yb;
     private int key;
-
 
 
     public UserA(int q, int a){
@@ -42,4 +48,15 @@ public class UserA {
     public int getKey() {
         return key;
     }
+
+    public String getMessage(){
+        String message = "This is simple Deffie-Hellman key exchange";
+        return CaesarCipherJava.encrypt(message,key%26);
+    }
+
+    public String decryptMessageWithOwnKey(String message){
+        return CaesarCipherJava.decrypt(message,key%26);
+    }
+
+
 }

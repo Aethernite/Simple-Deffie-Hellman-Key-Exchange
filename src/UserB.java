@@ -9,7 +9,6 @@ public class UserB {
     private int key;
 
 
-
     public UserB(int q, int a){
         Random r = new Random();
         this.random = r.nextInt(100) + 1;
@@ -41,5 +40,14 @@ public class UserB {
     public void exchange(UserA user){
         setYa(user.getYa());
         calculateKey();
+    }
+
+    public String getMessage(){
+        String message = "Cryptography is so cool!";
+        return CaesarCipherJava.encrypt(message,key%26);
+    }
+
+    public String decryptMessageWithOwnKey(String message){
+        return CaesarCipherJava.decrypt(message,key%26);
     }
 }
